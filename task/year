@@ -1,0 +1,147 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+/* Name of the class has to be "Main" only if the class is public. */
+class task2{
+public static void main(String args[]) throws IOException{
+int months,date,p,f,i,j,v;
+BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+//Scanner r=new Scanner(System.in);
+int monthdates[]={31,29,31,30,31,30,31,31,30,31,30,31};
+System.out.println("Enter the year");
+int year=Integer.parseInt(br.readLine());
+System.out.println("Enter the every day  details");
+if(year%4==0){
+ monthdates[1]=29;
+ v=366;
+}
+else{
+ monthdates[1]=28;
+ v=365;
+}
+int counter[][][] = new int[12][31][24];
+for( i=0;i<12;i++){
+for( j=0;j<monthdates[i];j++){
+
+	p=0;
+	String c=br.readLine();
+	String arr[]=c.split(" ");
+	for(String each:arr){
+	int value=Integer.parseInt(each);
+	counter[i][j][p]=value;
+	p++;
+}
+}
+}
+System.out.println("enter your choice");
+int choice=Integer.parseInt(br.readLine());
+int sum=0,c1,avg;
+switch(choice){
+case 1:
+sum=0;
+c1=monthdates[0]*24;
+for(i=0;i<monthdates[0];i++){
+for(j=0;j<24;j++){
+sum+=counter[0][i][j];
+}
+}
+avg=sum/c1;
+System.out.println("Average for january month:)\n"+avg);
+break;
+case 2:
+sum=0;
+for(i=0;i<24;i++){
+sum+=counter[11][20][i];
+}
+avg=sum/24;
+System.out.println("Average for December 21:)\n"+avg);
+break;
+case 3:
+sum=0;
+for(i=0;i<12;i++){
+for(j=0;j<24;j++){
+sum+=counter[i][6][j];
+}
+}
+c1=12*24;
+avg=sum/c1;
+System.out.println("Average for day 7:)\n"+avg);
+break;
+case 4:
+sum=0;
+for(i=0;i<12;i++){
+for(j=0;j<24;j++){
+sum+=counter[i][28][j];
+}
+}
+c1=12*24;
+avg=sum/c1;
+System.out.println("Average for day 29:)\n"+avg);
+break;
+case 5:
+sum=0;
+for(i=0;i<12;i++){
+for(j=0;j<monthdates[i];j++){
+for(f=9;f<17;f++){
+sum+=counter[i][j][f];
+}
+}
+}
+c1=12 * 8 * v;
+avg=sum/c1;
+System.out.println("Average for 10 to 18 hrs:)\n"+avg);
+case 6:
+int days[]={4,6,11,15,22};
+sum=0;
+for(int l=0;l<5;l++){
+for(i=0;i<12;i++){
+int t=days[l];
+for(f=7;f<12;f++){
+sum+=counter[i][t][f];
+}
+for(f=15;f<24;f++){
+sum+=counter[i][t][f];
+}
+}
+}
+c1=5*14*12;
+avg=sum/c1;
+System.out.println("Average for 5 months:)\n"+avg);
+break;
+case 7:
+sum=0;
+c1=monthdates[6]*24;
+for(i=0;i<monthdates[6];i++){
+for(j=0;j<24;j++){
+sum+=counter[6][i][j];
+}
+}
+avg=sum/c1;
+System.out.println("Average for july month:)\n"+avg);
+break;
+case 8:
+sum=0;
+for(i=0;i<12;i++)
+{
+int sum1=0;
+for(j=0;j<monthdates[i];j++){
+for(f=0;f<24;f++){
+sum1+=counter[i][j][f];
+}
+}
+int avg1;
+int c2=24*monthdates[i];
+avg1=sum1/c2;
+System.out.println("\nMonth:"+(i+1)+" Total:"+sum1+"avg:"+avg1);
+sum+=sum1;
+}
+c1=v*12*24;
+avg=sum/c1;
+System.out.println("\nYear "+" Total:"+sum+" avg:"+avg);
+break;
+}
+}
+}
+
+
